@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Mein Mini-Casino</title>
+    <style>
+        body { background: #1a1a1a; color: white; font-family: sans-serif; text-align: center; padding-top: 50px; }
+        button { background: #ffcc00; border: none; padding: 10px 20px; font-size: 18px; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #ffa500; }
+        #balance { font-size: 24px; color: #4caf50; }
+    </style>
+</head>
+<body>
+    <h1>🎲 Alles auf Risiko! 🎲</h1>
+    <p>Dein Guthaben: <span id="balance">1000</span> Coins</p>
+    <p>Einsatz: <input type="number" id="bet" value="100" min="1" style="width: 60px;"></p>
+    <button onclick="play()">Würfeln (4, 5 oder 6 gewinnt!)</button>
+    <h2 id="result"></h2>
+
+    <script>
+        let coins = 1000;
+        function play() {
+            let bet = parseInt(document.getElementById('bet').value);
+            if (bet > coins || bet <= 0) { alert('Ungültiger Einsatz!'); return; }
+            
+            let roll = Math.floor(Math.random() * 6) + 1;
+            if (roll >= 4) {
+                coins += bet;
+                document.getElementById('result').innerText = `Gewonnen! Gewürfelt: ${roll} 🎉`;
+            } else {
+                coins -= bet;
+                document.getElementById('result').innerText = `Verloren! Gewürfelt: ${roll} 😢`;
+            }
+            document.getElementById('balance').innerText = coins;
+            if (coins <= 0) { alert('Pleite! Seite neu laden für mehr Geld.'); coins = 1000; }
+        }
+    </script>
+</body>
+</html>
