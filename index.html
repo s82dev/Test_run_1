@@ -3,37 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Vegas Slot Machine</title>
+    <title>DonutSMP Fan Shop</title>
     <style>
+        /* --- STYLING (Das "Look & Feel") --- */
+        :root {
+            --donut-pink: #ff69b4;
+            --donut-dark-pink: #e04494;
+            --chocolate-brown: #2d1a10;
+            --bg-dark: #120a06;
+            --text-light: #fff5eb;
+            --gold: #ffd700;
+        }
+
         body {
-            background-color: #111;
-            color: #fff;
+            margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            background-image: radial-gradient(var(--chocolate-brown) 1px, transparent 1px);
+            background-size: 20px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
-            margin: 0;
-            overflow: hidden;
         }
 
-        h1 {
-            color: #ff007f;
-            text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
-            margin-bottom: 5px;
-        }
-
-        .casino-container {
-            background: #222;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-            border: 4px solid #00ffff;
+        header {
             text-align: center;
-            width: 320px;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, var(--chocolate-brown) 0%, transparent 100%);
+            width: 100%;
         }
 
+        header h1 {
+            font-size: 3rem;
+            color: var(--donut-pink);
+            text-shadow: 0 0 15px var(--donut-pink), 3px 3px 0px var(--chocolate-brown);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: var(--gold);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .shop-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* --- SHOP KARTEN --- */
+        .product-card {
+            background-color: rgba(45, 26, 16, 0.6);
+            border: 3px solid var(--donut-pink);
+            border-radius: 15px;
+            padding: 20px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px var(--donut-pink);
+        }
+
+        /* Platzhalter für Items (Donut-Form) */
+        .item-icon {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, transparent 20%, var(--donut-pink) 21%, var(--donut-pink) 70%, transparent 71%);
+            margin: 0 auto 20px;
+            position: relative;
+            filter: drop-shadow(0 0 8px var(--donut-pink));
+        }
+
+        .item-icon::after {
+            content: '🧁';
+            font-size: 2rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .rank-king .item-icon {
+            background: radial-gradient(circle, transparent 20%, var(--gold) 21%, var(--gold) 70%, transparent 71%);
+            filter: drop-shadow(0 0 8px var(--gold));
+        }
+        .rank-king .item-icon::after { content: '👑'; }
+
+        h3 {
+            margin: 10px 0;
+            font-size: 1.6rem;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            color: var(--gold);
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        /* --- BUTTONS --- */
+        .buy-btn {
+            background-color: var(--donut-pink);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .buy-btn:hover {
+            background-color: var(--donut-dark-pink);
+        }
+
+        .buy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .rank-king .buy-btn {
+            background-color: var(--gold);
+            color: #000;
+        }
+        .rank-king .buy-btn:hover {
+            background-color: #e6c200;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Glazed Store</h1>
+        <p>Inoffizielles DonutSMP Fan-Template</p>
+    </header>
+
+    <div class="shop-container">
+        <!-- Item 1 -->
+        <div class="product-card">
+            <div class="item-icon"></div>
+            <h3>Donut Rang</h3>
+            <p>Schalte den epischen rosa Chat-Präfix und coole Kosmetika frei.</p>
+            <div class="price">9.99 €</div>
+            <button class="buy-btn" onclick="playBuySound(this)">Kaufen</button>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="product-card rank-king">
+            <div class="item-icon"></div>
+            <h3>Mega König Rang</h3>
+            <p>Der ultimative Rang mit fliegen im Spawn und extra Keys!</p>
+            <div class="price">24.99 €</div>
+            <button class="buy-btn" onclick="playBuySound(this)">Kaufen</button>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="product-card">
+            <div class="item-icon" style="background: radial-gradient(circle, transparent 20%, #00ffff 21%, #00ffff 70%, transparent 71%); filter: drop-shadow(0 0 8px #00ffff);"></div>
+            <h3 style="color: #00ffff;">5x Loot Keys</h3>
+            <p>Öffne die Kisten am Spawn für OP-Ausrüstung.</p>
+            <div class="price">4.99 €</div>
+            <button class="buy-btn" style="background-color: #00ffff; color: black;" onclick="playBuySound(this)">Kaufen</button>
+        </div>
+    </div>
+
+    <!-- --- SOUND & INTERAKTION (Das "Gefühl") --- -->
+    <script>
+        // Synthetischer Minecraft-ähnlicher Klick-Sound über die Web Audio API
+        // (Verhindert, dass du extra Sounddateien hochladen musst!)
+        function playBuySound(button) {
+            // Audio-Kontext erstellen
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Oszillator für den Ton
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            oscillator.type = 'sine'; // Weicher Ton
+            
+            // Ein kurzer "Pling"-Effekt (Frequenz springt schnell nach oben)
+            oscillator.frequency.setValueAtTime(400, audioCtx.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
+            
+            // Lautstärke fadet schnell aus
+            gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.15);
+
+            // Visuelles Feedback
+            const originalText = button.innerText;
+            button.innerText = "Hinzugefügt! 🛒";
+            button.style.transform = "scale(1.1)";
+            
+            setTimeout(() => {
+                button.innerText = originalText;
+                button.style.transform = "none";
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
         .stats {
             display: flex;
             justify-content: space-between;
