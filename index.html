@@ -1,488 +1,121 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DonutSMP Fan Shop</title>
-    <style>
-        /* --- STYLING (Das "Look & Feel") --- */
-        :root {
-            --donut-pink: #ff69b4;
-            --donut-dark-pink: #e04494;
-            --chocolate-brown: #2d1a10;
-            --bg-dark: #120a06;
-            --text-light: #fff5eb;
-            --gold: #ffd700;
-        }
+<meta charset="UTF-8">
+<title>Pokemon Catch Trainer</title>
+<style>
+body{
+    margin:0;
+    background:#87CEEB;
+    overflow:hidden;
+    font-family:Arial;
+}
 
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            background-image: radial-gradient(var(--chocolate-brown) 1px, transparent 1px);
-            background-size: 20px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+#game{
+    position:relative;
+    width:100vw;
+    height:100vh;
+}
 
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(180deg, var(--chocolate-brown) 0%, transparent 100%);
-            width: 100%;
-        }
+#pokemon{
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#ffcc00;
+    left:50%;
+    top:30%;
+    transform:translate(-50%,-50%);
+}
 
-        header h1 {
-            font-size: 3rem;
-            color: var(--donut-pink);
-            text-shadow: 0 0 15px var(--donut-pink), 3px 3px 0px var(--chocolate-brown);
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+#circle{
+    position:absolute;
+    width:140px;
+    height:140px;
+    border:4px solid lime;
+    border-radius:50%;
+    left:50%;
+    top:30%;
+    transform:translate(-50%,-50%);
+}
 
-        header p {
-            color: var(--gold);
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .shop-container {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            padding: 20px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* --- SHOP KARTEN --- */
-        .product-card {
-            background-color: rgba(45, 26, 16, 0.6);
-            border: 3px solid var(--donut-pink);
-            border-radius: 15px;
-            padding: 20px;
-            width: 280px;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(5px);
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px var(--donut-pink);
-        }
-
-        /* Platzhalter für Items (Donut-Form) */
-        .item-icon {
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, transparent 20%, var(--donut-pink) 21%, var(--donut-pink) 70%, transparent 71%);
-            margin: 0 auto 20px;
-            position: relative;
-            filter: drop-shadow(0 0 8px var(--donut-pink));
-        }
-
-        .item-icon::after {
-            content: '🧁';
-            font-size: 2rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .rank-king .item-icon {
-            background: radial-gradient(circle, transparent 20%, var(--gold) 21%, var(--gold) 70%, transparent 71%);
-            filter: drop-shadow(0 0 8px var(--gold));
-        }
-        .rank-king .item-icon::after { content: '👑'; }
-
-        h3 {
-            margin: 10px 0;
-            font-size: 1.6rem;
-        }
-
-        .price {
-            font-size: 1.4rem;
-            color: var(--gold);
-            font-weight: bold;
-            margin: 15px 0;
-        }
-
-        /* --- BUTTONS --- */
-        .buy-btn {
-            background-color: var(--donut-pink);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 25px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: background 0.2s, transform 0.1s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .buy-btn:hover {
-            background-color: var(--donut-dark-pink);
-        }
-
-        .buy-btn:active {
-            transform: scale(0.95);
-        }
-
-        .rank-king .buy-btn {
-            background-color: var(--gold);
-            color: #000;
-        }
-        .rank-king .buy-btn:hover {
-            background-color: #e6c200;
-        }
-    </style>
+#ball{
+    position:absolute;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:white;
+    border:4px solid black;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <h1>Glazed Store</h1>
-        <p>Inoffizielles DonutSMP Fan-Template</p>
-    </header>
+<div id="game">
+<div id="circle"></div>
+<div id="pokemon"></div>
+<div id="ball"></div>
+</div>
 
-    <div class="shop-container">
-        <!-- Item 1 -->
-        <div class="product-card">
-            <div class="item-icon"></div>
-            <h3>Donut Rang</h3>
-            <p>Schalte den epischen rosa Chat-Präfix und coole Kosmetika frei.</p>
-            <div class="price">9.99 €</div>
-            <button class="buy-btn" onclick="playBuySound(this)">Kaufen</button>
-        </div>
+<script>
 
-        <!-- Item 2 -->
-        <div class="product-card rank-king">
-            <div class="item-icon"></div>
-            <h3>Mega König Rang</h3>
-            <p>Der ultimative Rang mit fliegen im Spawn und extra Keys!</p>
-            <div class="price">24.99 €</div>
-            <button class="buy-btn" onclick="playBuySound(this)">Kaufen</button>
-        </div>
+const ball=document.getElementById("ball");
+const pokemon=document.getElementById("pokemon");
+const circle=document.getElementById("circle");
 
-        <!-- Item 3 -->
-        <div class="product-card">
-            <div class="item-icon" style="background: radial-gradient(circle, transparent 20%, #00ffff 21%, #00ffff 70%, transparent 71%); filter: drop-shadow(0 0 8px #00ffff);"></div>
-            <h3 style="color: #00ffff;">5x Loot Keys</h3>
-            <p>Öffne die Kisten am Spawn für OP-Ausrüstung.</p>
-            <div class="price">4.99 €</div>
-            <button class="buy-btn" style="background-color: #00ffff; color: black;" onclick="playBuySound(this)">Kaufen</button>
-        </div>
-    </div>
+let dragging=false;
 
-    <!-- --- SOUND & INTERAKTION (Das "Gefühl") --- -->
-    <script>
-        // Synthetischer Minecraft-ähnlicher Klick-Sound über die Web Audio API
-        // (Verhindert, dass du extra Sounddateien hochladen musst!)
-        function playBuySound(button) {
-            // Audio-Kontext erstellen
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            
-            // Oszillator für den Ton
-            const oscillator = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            
-            oscillator.type = 'sine'; // Weicher Ton
-            
-            // Ein kurzer "Pling"-Effekt (Frequenz springt schnell nach oben)
-            oscillator.frequency.setValueAtTime(400, audioCtx.currentTime);
-            oscillator.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
-            
-            // Lautstärke fadet schnell aus
-            gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            
-            oscillator.start();
-            oscillator.stop(audioCtx.currentTime + 0.15);
+ball.addEventListener("pointerdown",()=>{
+dragging=true;
+});
 
-            // Visuelles Feedback
-            const originalText = button.innerText;
-            button.innerText = "Hinzugefügt! 🛒";
-            button.style.transform = "scale(1.1)";
-            
-            setTimeout(() => {
-                button.innerText = originalText;
-                button.style.transform = "none";
-            }, 1000);
-        }
-    </script>
+window.addEventListener("pointermove",(e)=>{
+if(!dragging)return;
+
+ball.style.left=e.clientX+"px";
+ball.style.top=e.clientY+"px";
+});
+
+window.addEventListener("pointerup",(e)=>{
+
+dragging=false;
+
+const p=pokemon.getBoundingClientRect();
+
+if(
+e.clientX>p.left &&
+e.clientX<p.right &&
+e.clientY>p.top &&
+e.clientY<p.bottom
+){
+alert("Treffer!");
+}
+
+ball.style.left="50%";
+ball.style.bottom="40px";
+ball.style.top="";
+});
+
+let size=140;
+let dir=-1;
+
+setInterval(()=>{
+
+size+=dir*2;
+
+if(size<50)dir=1;
+if(size>140)dir=-1;
+
+circle.style.width=size+"px";
+circle.style.height=size+"px";
+
+},25);
+
+</script>
 
 </body>
 </html>
-        .stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        #balance { color: #39ff14; text-shadow: 0 0 5px #39ff14; }
-        #bet { color: #ffcc00; text-shadow: 0 0 5px #ffcc00; }
-
-        .slots-display {
-            display: flex;
-            justify-content: space-around;
-            background: #000;
-            padding: 20px 10px;
-            border-radius: 10px;
-            border: 2px solid #555;
-            margin-bottom: 25px;
-        }
-
-        .slot-box {
-            font-size: 3.5rem;
-            width: 70px;
-            height: 80px;
-            line-height: 80px;
-            background: #111;
-            border-radius: 10px;
-            border: 2px solid #333;
-            transition: transform 0.1s ease-in-out;
-        }
-
-        .controls {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .bet-adjust {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-small {
-            background: #333;
-            color: white;
-            border: 1px solid #777;
-            padding: 5px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .btn-small:hover { background: #444; }
-
-        .btn-spin {
-            background: linear-gradient(45deg, #ff007f, #7f00ff);
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
-            transition: all 0.2s;
-        }
-
-        .btn-spin:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(255, 0, 127, 0.6);
-        }
-
-        .btn-spin:disabled {
-            background: #444;
-            box-shadow: none;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        #message {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            min-height: 30px;
-            font-weight: bold;
-        }
-        
-        .win-flash { color: #39ff14; text-shadow: 0 0 10px #39ff14; animation: flash 0.5s infinite alternate; }
-        .lose-flash { color: #ff3333; }
-
-        @keyframes flash {
-            from { opacity: 0.5; }
-            to { opacity: 1; }
-        }
-    </style>
-</head>
-<body>
-
-    <h1>NEON SLOTS</h1>
-    
-    <div class="casino-container">
-        <div class="stats">
-            <div>💰 Coins: <span id="balance">1000</span></div>
-            <div>🎰 Einsatz: <span id="bet">10</span></div>
-        </div>
-
-        <div class="slots-display">
-            <div class="slot-box" id="slot1">🍒</div>
-            <div class="slot-box" id="slot2">🍋</div>
-            <div class="slot-box" id="slot3">💎</div>
-        </div>
-
-        <div class="controls">
-            <div class="bet-adjust">
-                <button class="btn-small" onclick="changeBet(-5)">-5</button>
-                <button class="btn-small" onclick="changeBet(5)">+5</button>
-                <button class="btn-small" onclick="maxBet()">Max</button>
-            </div>
-            <button class="btn-spin" id="spinBtn" onclick="spin()">SPIN!</button>
-        </div>
-
-        <div id="message">Setze deinen Einsatz und dreh die Walzen!</div>
-    </div>
-
-    <script>
-        const symbols = ['🍒', '🍋', '🍊', '🍇', '🔔', '💎', '7️⃣'];
-        let balance = 1000;
-        let currentBet = 10;
-        let isSpinning = false;
-
-        // Audio-Synthesizer für Retro-Sounds ohne externe Dateien
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playTone(freq, duration, type = "sine") {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = type;
-            osc.frequency.value = freq;
-            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + duration);
-        }
-
-        function changeBet(amount) {
-            if (isSpinning) return;
-            let newBet = currentBet + amount;
-            if (newBet >= 5 && newBet <= balance) {
-                currentBet = newBet;
-                document.getElementById('bet').innerText = currentBet;
-                playTone(400, 0.05);
-            }
-        }
-
-        function maxBet() {
-            if (isSpinning) return;
-            currentBet = Math.min(100, balance);
-            document.getElementById('bet').innerText = currentBet;
-            playTone(500, 0.08);
-        }
-
-        function spin() {
-            if (isSpinning || balance < currentBet) {
-                if (balance < currentBet) {
-                    document.getElementById('message').innerHTML = "<span class='lose-flash'>Nicht genug Coins! Defizit ausgleichen.</span>";
-                    playTone(150, 0.3, "sawtooth");
-                }
-                return;
-            }
-
-            isSpinning = true;
-            balance -= currentBet;
-            document.getElementById('balance').innerText = balance;
-            document.getElementById('spinBtn').disabled = true;
-            document.getElementById('message').innerText = "Die Walzen drehen sich...";
-
-            let intervals = [];
-            let counter = 0;
-            const duration = 15; // Wie oft es blinkt/dreht
-
-            // Dreheffekt simulieren
-            for (let i = 1; i <= 3; i++) {
-                let slot = document.getElementById(`slot${i}`);
-                intervals[i] = setInterval(() => {
-                    let randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-                    slot.innerText = randomSymbol;
-                    slot.style.transform = `scale(${1 + Math.random()*0.1})`;
-                    playTone(300 + (i * 100), 0.02);
-                }, 70 + (i * 30));
-            }
-
-            // Stoppen nacheinander
-            setTimeout(() => { clearInterval(intervals[1]); playTone(600, 0.1, "square"); document.getElementById('slot1').style.transform="scale(1)"; }, 1000);
-            setTimeout(() => { clearInterval(intervals[2]); playTone(600, 0.1, "square"); document.getElementById('slot2').style.transform="scale(1)"; }, 1500);
-            setTimeout(() => { 
-                clearInterval(intervals[3]); 
-                document.getElementById('slot3').style.transform="scale(1)";
-                checkResult();
-            }, 2000);
-        }
-
-        function checkResult() {
-            const s1 = document.getElementById('slot1').innerText;
-            const s2 = document.getElementById('slot2').innerText;
-            const s3 = document.getElementById('slot3').innerText;
-            const msg = document.getElementById('message');
-
-            isSpinning = false;
-            document.getElementById('spinBtn').disabled = false;
-
-            // Logik für Gewinne
-            if (s1 === s2 && s2 === s3) {
-                // Hauptgewinn (3 gleiche)
-                let multiplier = 10;
-                if (s1 === '7️⃣') multiplier = 50;
-                else if (s1 === '💎') multiplier = 25;
-
-                let winAmount = currentBet * multiplier;
-                balance += winAmount;
-                msg.innerHTML = `<span class='win-flash'>JACKPOT! 🎉 +${winAmount} Coins!</span>`;
-                
-                // Siegersound
-                playTone(523.25, 0.1); setTimeout(() => playTone(659.25, 0.1), 100); setTimeout(() => playTone(783.99, 0.3), 200);
-            } else if (s1 === s2 || s2 === s3 || s1 === s3) {
-                // Kleiner Gewinn (2 gleiche)
-                let winAmount = Math.floor(currentBet * 2);
-                balance += winAmount;
-                msg.innerHTML = `<span class='win-flash'>Kleiner Gewinn! 👍 +${winAmount} Coins</span>`;
-                playTone(523.25, 0.1); setTimeout(() => playTone(659.25, 0.1), 100);
-            } else {
-                // Verloren
-                msg.innerHTML = "<span class='lose-flash'>Kein Gewinn. Versuchs nochmal!</span>";
-                playTone(180, 0.2, "triangle");
-            }
-
-            document.getElementById('balance').innerText = balance;
-
-            if (balance <= 0) {
-                msg.innerHTML = "💥 PLEITE! Hier sind 500 Trost-Coins!";
-                balance = 500;
-                document.getElementById('balance').innerText = balance;
-            }
-            
-            if(currentBet > balance) {
-                currentBet = balance;
-                document.getElementById('bet').innerText = currentBet;
-            }
-        }
-    </script>
-</body>
-</html>
-    </script>
-</body>
-</html>   
